@@ -14,7 +14,7 @@ function Header({ onNewGame }) {
                     <nav data-name="nav-menu">
                         <button 
                             onClick={onNewGame}
-                            className="text-gray-300 hover:text-amber-500 transition-colors" 
+                            className="text-gray-300 hover:text-primary transition-colors" 
                             data-name="new-game-btn"
                         >
                             <i className="fas fa-plus-circle mr-1"></i>

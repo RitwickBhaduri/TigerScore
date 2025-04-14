@@ -94,21 +94,21 @@ function GameSetup({ onStartGame }) {
 
         return (
             <div className="max-w-2xl mx-auto mt-8 p-6 bg-gray-800 rounded-lg shadow-xl" data-name="game-setup">
-                <h2 className="text-xl font-bold mb-6 text-center text-amber-500" data-name="setup-title">New Game Setup</h2>
+                <h2 className="text-xl font-bold mb-6 text-center text-primary" data-name="setup-title">New Game Setup</h2>
                 
                 <div className="mb-6" data-name="game-mode-toggle">
                     <label className="block mb-2">Game Mode</label>
                     <div className="flex gap-4">
                         <button
                             onClick={() => setIsTeamMode(false)}
-                            className={`flex-1 py-2 px-4 rounded ${!isTeamMode ? 'bg-amber-500' : 'bg-gray-700'}`}
+                            className={`flex-1 py-2 px-4 rounded ${!isTeamMode ? 'bg-primary' : 'bg-gray-700'}`}
                             data-name="single-mode-btn"
                         >
                             Single Players
                         </button>
                         <button
                             onClick={() => setIsTeamMode(true)}
-                            className={`flex-1 py-2 px-4 rounded ${isTeamMode ? 'bg-amber-500' : 'bg-gray-700'}`}
+                            className={`flex-1 py-2 px-4 rounded ${isTeamMode ? 'bg-primary' : 'bg-gray-700'}`}
                             data-name="team-mode-btn"
                         >
                             Team Mode
@@ -126,7 +126,7 @@ function GameSetup({ onStartGame }) {
                                         type="text"
                                         value={teamIndex === 0 ? team1Name : team2Name}
                                         onChange={(e) => teamIndex === 0 ? setTeam1Name(e.target.value) : setTeam2Name(e.target.value)}
-                                        className="px-3 py-1 bg-gray-600 rounded border border-gray-500 focus:border-amber-500 focus:outline-none text-sm"
+                                        className="px-3 py-1 bg-gray-600 rounded border border-gray-500 focus:border-primary focus:outline-none text-sm"
                                         placeholder={`Team ${teamIndex + 1} name`}
                                         data-name={`team-${teamIndex + 1}-name-input`}
                                     />
@@ -138,7 +138,7 @@ function GameSetup({ onStartGame }) {
                                             type="text"
                                             value={player}
                                             onChange={(e) => handleTeamPlayerChange(teamIndex, playerIndex, e.target.value)}
-                                            className="w-full px-3 py-2 bg-gray-600 rounded border border-gray-500 focus:border-amber-500 focus:outline-none"
+                                            className="w-full px-3 py-2 bg-gray-600 rounded border border-gray-500 focus:border-primary focus:outline-none"
                                             placeholder={`Player ${playerIndex + 1} name`}
                                             data-name={`team-${teamIndex + 1}-player-${playerIndex + 1}`}
                                         />
@@ -152,7 +152,7 @@ function GameSetup({ onStartGame }) {
                                 {(teamIndex === 0 ? team1Players : team2Players).length < 5 && (
                                     <button
                                         onClick={() => handleAddTeamPlayer(teamIndex)}
-                                        className="mt-3 text-amber-500 hover:text-amber-400"
+                                        className="mt-3 text-primary hover:text-primary/80"
                                         data-name={`add-team-${teamIndex + 1}-player`}
                                     >
                                         <i className="fas fa-plus-circle mr-1"></i>
@@ -171,7 +171,7 @@ function GameSetup({ onStartGame }) {
                                     type="text"
                                     value={player}
                                     onChange={(e) => handleSinglePlayerChange(index, e.target.value)}
-                                    className="flex-1 px-3 py-2 bg-gray-700 rounded border border-gray-600 focus:border-amber-500 focus:outline-none"
+                                    className="flex-1 px-3 py-2 bg-gray-700 rounded border border-gray-600 focus:border-primary focus:outline-none"
                                     placeholder={`Player ${index + 1} name`}
                                     data-name={`player-${index + 1}-input`}
                                 />
@@ -205,7 +205,7 @@ function GameSetup({ onStartGame }) {
                             })}
                         >
                             <div className={`absolute top-0 left-0 right-0 bottom-0 rounded-full transition-colors duration-200 ${
-                                gameSettings.startingPlayer === 1 ? 'bg-amber-500' : 'bg-gray-600'
+                                gameSettings.startingPlayer === 1 ? 'bg-primary' : 'bg-gray-600'
                             }`}>
                                 <div className={`absolute h-5 w-5 left-0.5 bottom-0.5 bg-white rounded-full transition-transform duration-200 ${
                                     gameSettings.startingPlayer === 1 ? 'translate-x-6' : ''
@@ -234,7 +234,7 @@ function GameSetup({ onStartGame }) {
                                 startingScore: e.target.value,
                                 customScore: ''
                             })}
-                            className="w-full px-3 py-2 bg-gray-700 rounded border border-gray-600 focus:border-amber-500 focus:outline-none"
+                            className="w-full px-3 py-2 bg-gray-700 rounded border border-gray-600 focus:border-primary focus:outline-none"
                             data-name="game-type-select"
                         >
                             <option value="201">201</option>
@@ -252,7 +252,7 @@ function GameSetup({ onStartGame }) {
                                         ...gameSettings,
                                         customScore: e.target.value
                                     })}
-                                    className="w-full px-3 py-2 bg-gray-700 rounded border border-gray-600 focus:border-amber-500 focus:outline-none"
+                                    className="w-full px-3 py-2 bg-gray-700 rounded border border-gray-600 focus:border-primary focus:outline-none"
                                     placeholder="Enter custom score"
                                     data-name="custom-score-input"
                                 />
@@ -274,7 +274,7 @@ function GameSetup({ onStartGame }) {
                                     ...gameSettings,
                                     legs: e.target.value
                                 })}
-                                className="w-full px-3 py-2 bg-gray-700 rounded border border-gray-600 focus:border-amber-500 focus:outline-none"
+                                className="w-full px-3 py-2 bg-gray-700 rounded border border-gray-600 focus:border-primary focus:outline-none"
                                 data-name="legs-select"
                             >
                                 {[1, 3, 5, 7].map(num => (
@@ -291,7 +291,7 @@ function GameSetup({ onStartGame }) {
                                     ...gameSettings,
                                     sets: e.target.value
                                 })}
-                                className="w-full px-3 py-2 bg-gray-700 rounded border border-gray-600 focus:border-amber-500 focus:outline-none"
+                                className="w-full px-3 py-2 bg-gray-700 rounded border border-gray-600 focus:border-primary focus:outline-none"
                                 data-name="sets-select"
                             >
                                 {[1, 3, 5, 7].map(num => (
@@ -308,7 +308,7 @@ function GameSetup({ onStartGame }) {
                                     ...gameSettings,
                                     startMode: e.target.value
                                 })}
-                                className="w-full px-3 py-2 bg-gray-700 rounded border border-gray-600 focus:border-amber-500 focus:outline-none"
+                                className="w-full px-3 py-2 bg-gray-700 rounded border border-gray-600 focus:border-primary focus:outline-none"
                                 data-name="start-mode-select"
                             >
                                 <option value="straight">Straight In</option>
@@ -324,7 +324,7 @@ function GameSetup({ onStartGame }) {
                                     ...gameSettings,
                                     checkoutMode: e.target.value
                                 })}
-                                className="w-full px-3 py-2 bg-gray-700 rounded border border-gray-600 focus:border-amber-500 focus:outline-none"
+                                className="w-full px-3 py-2 bg-gray-700 rounded border border-gray-600 focus:border-primary focus:outline-none"
                                 data-name="checkout-mode-select"
                             >
                                 <option value="straight">Straight Out</option>
@@ -336,7 +336,7 @@ function GameSetup({ onStartGame }) {
 
                 <button
                     onClick={handleStartGame}
-                    className="w-full mt-6 bg-amber-500 hover:bg-amber-600 text-white py-2 px-4 rounded transition-colors"
+                    className="w-full mt-6 bg-primary hover:bg-primary/90 text-white py-2 px-4 rounded transition-colors"
                     data-name="start-game-btn"
                 >
                     Start Game

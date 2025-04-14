@@ -8,8 +8,11 @@
 }
 
 .score-input {
-    background-color: #1f2937;
-    border: 1px solid #374151;
+    border: 2px solid #2B2B31;
+    padding: 8px;
+    margin: 4px;
+    border-radius: 4px;
+    border-color: #E5931B;
 }
 
 .history-item {
@@ -33,4 +36,106 @@
 @keyframes bounceOnce {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-20px); }
+}
+
+/* Victory Animations */
+.victory-popup {
+    animation: fadeIn 0.3s ease-out;
+}
+
+.victory-content {
+    animation: slideIn 0.5s ease-out;
+}
+
+.victory-text {
+    animation: scaleIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Confetti Styles */
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    animation: confetti-fall linear infinite;
+}
+
+.confetti-leg {
+    animation-duration: 2s;
+    width: 8px;
+    height: 8px;
+}
+
+.confetti-set {
+    animation-duration: 2.5s;
+    width: 12px;
+    height: 12px;
+}
+
+.confetti-match {
+    animation-duration: 3s;
+    width: 15px;
+    height: 15px;
+}
+
+@keyframes confetti-fall {
+    0% {
+        transform: translateY(-100vh) rotate(0deg);
+        opacity: 1;
+    }
+    75% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Confetti shapes */
+.confetti-square {
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+}
+
+.confetti-circle {
+    border-radius: 50%;
+}
+
+.confetti-triangle {
+    clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+}
+
+.game-container {
+    background-color: #202020;
+    border: 1px solid #2B2B31;
+}
+
+.score-history {
+    border-bottom: 1px solid #2B2B31;
 }

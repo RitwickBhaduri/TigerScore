@@ -34,7 +34,7 @@ function NumberPad({ value, onChange, onSubmit }) {
                         <button
                             key={num}
                             onClick={() => handleNumberClick(num)}
-                            className="p-4 text-xl bg-gray-700 hover:bg-gray-600 rounded"
+                            className="p-4 text-xl bg-primary hover:bg-primary/90 rounded"
                             data-name={`num-${num}-btn`}
                         >
                             {num}
@@ -42,14 +42,14 @@ function NumberPad({ value, onChange, onSubmit }) {
                     ))}
                     <button
                         onClick={handleBackspace}
-                        className="p-4 text-xl bg-gray-700 hover:bg-gray-600 rounded"
+                        className="p-4 text-xl bg-primary hover:bg-primary/90 rounded"
                         data-name="backspace-btn"
                     >
                         <i className="fas fa-backspace"></i>
                     </button>
                     <button
                         onClick={() => handleNumberClick(0)}
-                        className="p-4 text-xl bg-gray-700 hover:bg-gray-600 rounded"
+                        className="p-4 text-xl bg-primary hover:bg-primary/90 rounded"
                         data-name="num-0-btn"
                     >
                         0

@@ -98,7 +98,9 @@ function App() {
                 const newHistory = [...prev.history, {
                     scores: [...prev.scores],
                     currentPlayer: prev.currentPlayer,
-                    currentLegScores: prev.currentLegScores.map(scores => [...scores])
+                    currentLegScores: prev.currentLegScores.map(scores => [...scores]),
+                    legsWon: [...prev.legsWon],
+                    setsWon: [...prev.setsWon]
                 }];
 
                 let newLegsWon = [...prev.legsWon];
@@ -226,7 +228,9 @@ function App() {
                 const newFuture = [...prev.future, {
                     scores: [...prev.scores],
                     currentPlayer: prev.currentPlayer,
-                    currentLegScores: prev.currentLegScores.map(scores => [...scores])
+                    currentLegScores: prev.currentLegScores.map(scores => [...scores]),
+                    legsWon: [...prev.legsWon],
+                    setsWon: [...prev.setsWon]
                 }];
 
                 // If this is the last history entry, reset to initial state
@@ -244,7 +248,9 @@ function App() {
                     currentPlayer: lastState.currentPlayer,
                     history: newHistory,
                     future: newFuture,
-                    currentLegScores: lastState.currentLegScores.map(scores => [...scores])
+                    currentLegScores: lastState.currentLegScores.map(scores => [...scores]),
+                    legsWon: lastState.legsWon ? [...lastState.legsWon] : [...prev.legsWon],
+                    setsWon: lastState.setsWon ? [...lastState.setsWon] : [...prev.setsWon]
                 };
             });
         };

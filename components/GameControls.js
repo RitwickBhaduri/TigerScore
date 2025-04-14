@@ -6,7 +6,7 @@ function GameControls({ onUndo, onRedo, canUndo, canRedo }) {
                     onClick={onUndo}
                     disabled={!canUndo}
                     className={`px-4 py-2 rounded flex items-center ${
-                        canUndo ? 'bg-amber-500 hover:bg-amber-600' : 'bg-gray-600 cursor-not-allowed'
+                        canUndo ? 'bg-primary hover:bg-primary/90' : 'bg-gray-600 cursor-not-allowed'
                     }`}
                     data-name="undo-btn"
                 >
@@ -17,7 +17,7 @@ function GameControls({ onUndo, onRedo, canUndo, canRedo }) {
                     onClick={onRedo}
                     disabled={!canRedo}
                     className={`px-4 py-2 rounded flex items-center ${
-                        canRedo ? 'bg-amber-500 hover:bg-amber-600' : 'bg-gray-600 cursor-not-allowed'
+                        canRedo ? 'bg-primary hover:bg-primary/90' : 'bg-gray-600 cursor-not-allowed'
                     }`}
                     data-name="redo-btn"
                 >

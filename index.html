@@ -19,6 +19,23 @@
     <script src="https://resource.trickle.so/vendor_lib/unpkg/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://resource.trickle.so/vendor_lib/unpkg/@babel/standalone/babel.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#E5931B',
+                        'gray': {
+                            900: '#202020',
+                            800: '#2B2B31',
+                            700: '#30303D',
+                            600: '#272733',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
     <link href="styles/main.css" rel="stylesheet">
     <link href="styles/game.css" rel="stylesheet">

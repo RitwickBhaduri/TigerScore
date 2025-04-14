@@ -24,7 +24,7 @@ function PlayerScore({
                 
                 <h3 className="text-lg font-semibold mb-2" data-name="player-name">{name}</h3>
                 
-                <div className="text-3xl font-bold text-amber-500 mb-4" data-name="player-score">
+                <div className="text-3xl font-bold text-primary mb-4" data-name="player-score">
                     {score}
                 </div>
 
