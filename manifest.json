@@ -10,9 +10,9 @@
   "theme_color": "#E5931B",
   "icons": [
     {
-      "src": "https://app.trickle.so/storage/public/images/usr_0edcd6d6a0000001/62b82d8d-219e-47d6-860d-ab8c5ba55d4a.svg",
+      "src": "https://app.trickle.so/storage/public/images/usr_0edcd6d6a0000001/64d109f4-e371-498b-967e-d89d998c59c1.png",
       "sizes": "192x192 512x512",
-      "type": "image/svg+xml",
+      "type": "image/png",
       "purpose": "any maskable"
     }
   ],
