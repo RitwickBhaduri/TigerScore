@@ -1,4 +1,4 @@
-const CACHE_NAME = 'tigerscore-v1';
+const CACHE_NAME = 'tigerscore-v2';
 const urlsToCache = [
   '/TigerScore/',
   '/TigerScore/index.html',
