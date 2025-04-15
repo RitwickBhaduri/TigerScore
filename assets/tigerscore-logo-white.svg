@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="150" viewBox="0 0 800 150" xmlns="http://www.w3.org/2000/svg">
+    <style>
+        .text { fill: #ffffff; font-family: Arial, sans-serif; font-weight: bold; }
+        .star { fill: #E5931B; }
+    </style>
+    <text x="50" y="100" class="text" font-size="120">TigerSc</text>
+    <circle cx="600" cy="75" r="40" class="star" />
+    <text x="650" y="100" class="text" font-size="120">re</text>
+</svg> 

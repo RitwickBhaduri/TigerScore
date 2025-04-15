@@ -2,9 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="description" content="TigerScore - A modern darts scoring application for tracking your games and statistics">
     <meta name="keywords" content="darts, scoring, statistics, game tracker, darts counter">
+    <meta name="theme-color" content="#E5931B">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="TigerScore">
     <meta property="og:title" content="TigerScore - Darts Scoring App">
     <meta property="og:description" content="Track your darts games and statistics with TigerScore">
     <meta property="og:type" content="website">
@@ -14,7 +18,9 @@
     <meta name="twitter:description" content="Track your darts games and statistics with TigerScore">
     <meta name="twitter:image" content="https://app.trickle.so/storage/public/images/usr_0edcd6d6a0000001/62b82d8d-219e-47d6-860d-ab8c5ba55d4a.svg">
     <title>TigerScore - Darts Scoring App</title>
+    <link rel="manifest" href="/manifest.json">
     <link rel="icon" type="image/svg+xml" href="https://app.trickle.so/storage/public/images/usr_0edcd6d6a0000001/62b82d8d-219e-47d6-860d-ab8c5ba55d4a.svg">
+    <link rel="apple-touch-icon" href="https://app.trickle.so/storage/public/images/usr_0edcd6d6a0000001/62b82d8d-219e-47d6-860d-ab8c5ba55d4a.svg">
     <script src="https://resource.trickle.so/vendor_lib/unpkg/react@18/umd/react.production.min.js"></script>
     <script src="https://resource.trickle.so/vendor_lib/unpkg/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://resource.trickle.so/vendor_lib/unpkg/@babel/standalone/babel.min.js"></script>
@@ -39,8 +45,27 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
     <link href="styles/main.css" rel="stylesheet">
     <link href="styles/game.css" rel="stylesheet">
+    <link href="styles/splash.css" rel="stylesheet">
+    <style>
+        @media (max-width: 640px) {
+            .touch-friendly {
+                padding: 1rem;
+                min-height: 3rem;
+                font-size: 1.25rem;
+            }
+            .number-pad button {
+                min-height: 4rem;
+                font-size: 1.5rem;
+            }
+        }
+    </style>
 </head>
 <body class="bg-gray-900 text-white">
+    <div class="splash-screen">
+        <img src="https://app.trickle.so/storage/public/images/usr_0edcd6d6a0000001/64d109f4-e371-498b-967e-d89d998c59c1.png" alt="TigerScore" class="splash-logo">
+        <div class="splash-from">from</div>
+        <img src="https://app.trickle.so/storage/public/images/usr_0edcd6d6a0000001/1c94e046-d7be-4e37-89dc-7b55e3066fc8.png" alt="TigerHawks" class="splash-tigerhawks">
+    </div>
     <div id="root"></div>
     <script type="text/babel" src="components/Header.js"></script>
     <script type="text/babel" src="components/GameSetup.js"></script>
@@ -54,5 +79,18 @@
     <script type="text/babel" src="components/ScoreHistory.js"></script>
     <script type="text/babel" src="components/GameControls.js"></script>
     <script type="text/babel" src="utils/gameStats.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('ServiceWorker registration successful');
+                    })
+                    .catch(err => {
+                        console.log('ServiceWorker registration failed: ', err);
+                    });
+            });
+        }
+    </script>
 </body>
 </html>

@@ -139,3 +139,86 @@
 .score-history {
     border-bottom: 1px solid #2B2B31;
 }
+
+/* Responsive Styles */
+@media (max-width: 640px) {
+    .game-container {
+        padding: 0.5rem;
+    }
+
+    .player-score {
+        padding: 0.75rem;
+        margin: 0.5rem 0;
+    }
+
+    .score-input {
+        padding: 0.75rem;
+        font-size: 1.25rem;
+    }
+
+    .history-item {
+        padding: 0.5rem;
+        font-size: 0.875rem;
+    }
+
+    .number-pad {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.5rem;
+        padding: 0.5rem;
+    }
+
+    .number-pad button {
+        padding: 1rem;
+        font-size: 1.25rem;
+        min-height: 3.5rem;
+    }
+
+    .victory-popup {
+        padding: 1rem;
+    }
+
+    .victory-content {
+        padding: 1.5rem;
+    }
+
+    .victory-text {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .player-score {
+        padding: 0.5rem;
+    }
+
+    .score-input {
+        padding: 0.5rem;
+        font-size: 1rem;
+    }
+
+    .number-pad button {
+        padding: 0.75rem;
+        font-size: 1rem;
+        min-height: 3rem;
+    }
+
+    .victory-text {
+        font-size: 1.25rem;
+    }
+}
+
+/* Touch-friendly styles */
+.touch-friendly {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+}
+
+.touch-friendly:active {
+    transform: scale(0.98);
+}
+
+/* Prevent text selection on buttons */
+button {
+    user-select: none;
+    -webkit-user-select: none;
+}

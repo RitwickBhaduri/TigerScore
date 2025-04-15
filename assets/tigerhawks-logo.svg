@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="400" height="100" viewBox="0 0 400 100" xmlns="http://www.w3.org/2000/svg">
+    <style>
+        .logo { fill: #ffffff; }
+    </style>
+    <path class="logo" d="M200 10 L180 90 L220 90 Z"/>
+    <text x="100" y="80" class="logo" font-family="Arial, sans-serif" font-size="24" font-weight="bold">TIGERHAWKS</text>
+</svg> 
