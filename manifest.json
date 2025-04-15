@@ -2,7 +2,8 @@
   "name": "TigerScore",
   "short_name": "TigerScore",
   "description": "A modern darts scoring application for tracking your games and statistics",
-  "start_url": "/",
+  "start_url": "/TigerScore/",
+  "scope": "/TigerScore/",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#202020",
@@ -32,7 +33,7 @@
       "name": "New Game",
       "short_name": "New Game",
       "description": "Start a new darts game",
-      "url": "/?newGame=true"
+      "url": "/TigerScore/?newGame=true"
     }
   ],
   "categories": ["sports", "games", "utilities"],
