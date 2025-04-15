@@ -1,4 +1,4 @@
-const CACHE_NAME = 'tigerscore-v2';
+const CACHE_NAME = 'tigerscore-v3';
 const urlsToCache = [
   '/TigerScore/',
   '/TigerScore/index.html',
@@ -18,7 +18,7 @@ const urlsToCache = [
   '/TigerScore/utils/gameLogic.js',
   '/TigerScore/utils/storage.js',
   '/TigerScore/utils/gameStats.js',
-  '/TigerScore/assets/TigerScore_Icon.png',
+  '/TigerScore/assets/TigerScore_Icon.png?v=3',
   'https://app.trickle.so/storage/public/images/usr_0edcd6d6a0000001/64d109f4-e371-498b-967e-d89d998c59c1.png',
   'https://app.trickle.so/storage/public/images/usr_0edcd6d6a0000001/1c94e046-d7be-4e37-89dc-7b55e3066fc8.png',
   'https://resource.trickle.so/vendor_lib/unpkg/react@18/umd/react.production.min.js',
