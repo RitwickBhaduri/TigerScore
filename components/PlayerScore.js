@@ -1,3 +1,5 @@
+import { checkout_routes } from '../utils/checkoutRoutes';
+
 function PlayerScore({ 
     name, 
     score, 
@@ -9,6 +11,15 @@ function PlayerScore({
     isTeamMode
 }) {
     try {
+        // Get checkout advice for the current score
+        const getCheckoutAdvice = (score) => {
+            if (score <= 1 || score > 170) return null;
+            const checkout = checkout_routes[score];
+            return checkout && checkout !== "No checkout possible" ? checkout : null;
+        };
+
+        const checkoutAdvice = getCheckoutAdvice(score);
+
         return (
             <div 
                 className={`player-score p-4 rounded-lg ${isActive ? 'active' : ''}`}
@@ -33,9 +44,16 @@ function PlayerScore({
                     )}
                 </h3>
                 
-                <div className="text-4xl font-bold text-primary mb-4" data-name="player-score">
+                <div className="text-4xl font-bold text-primary mb-2" data-name="player-score">
                     {score}
                 </div>
+
+                {checkoutAdvice && (
+                    <div className="text-sm text-amber-400 mb-4 text-center" data-name="checkout-advice">
+                        <div className="font-semibold mb-1">Checkout:</div>
+                        <div>{checkoutAdvice.join(" → ")}</div>
+                    </div>
+                )}
 
                 <div className="grid grid-cols-2 gap-2 mb-4 text-xs" data-name="game-progress">
                     <div className="text-center p-1 bg-gray-700 rounded">
