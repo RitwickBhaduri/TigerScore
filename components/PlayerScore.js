@@ -13,10 +13,15 @@ function PlayerScore({
     try {
         // Get checkout advice for the current score
         const getCheckoutAdvice = (score) => {
-            if (score <= 1 || score > 170) return null;
-            const checkout = checkout_routes[score];
-            if (!checkout || checkout === "No checkout possible") return null;
-            return Array.isArray(checkout) ? checkout : null;
+            try {
+                if (!score || score <= 1 || score > 170) return null;
+                const checkout = checkout_routes[score];
+                if (!checkout || checkout === "No checkout possible") return null;
+                return Array.isArray(checkout) ? checkout : null;
+            } catch (error) {
+                console.error('Error in getCheckoutAdvice:', error);
+                return null;
+            }
         };
 
         const checkoutAdvice = getCheckoutAdvice(score);
@@ -59,18 +64,18 @@ function PlayerScore({
                 <div className="grid grid-cols-2 gap-2 mb-4 text-xs" data-name="game-progress">
                     <div className="text-center p-1 bg-gray-700 rounded">
                         <div className="font-semibold">Sets</div>
-                        <div>{stats.setsWon}</div>
+                        <div>{stats?.setsWon || 0}</div>
                     </div>
                     <div className="text-center p-1 bg-gray-700 rounded">
                         <div className="font-semibold">Legs</div>
-                        <div>{stats.legsWon}</div>
+                        <div>{stats?.legsWon || 0}</div>
                     </div>
                 </div>
 
                 <div className="grid grid-cols-2 gap-2 mb-4" data-name="stats-and-history">
                     <div className="text-center p-2 bg-gray-700 rounded text-sm">
                         <div className="font-semibold">Leg Avg:</div>
-                        <div>{typeof stats.legAverage === 'number' ? stats.legAverage.toFixed(1) : '0.0'}</div>
+                        <div>{typeof stats?.legAverage === 'number' ? stats.legAverage.toFixed(1) : '0.0'}</div>
                     </div>
                     {lastScore !== undefined && lastScore !== null && (
                         <div className="text-center p-2 bg-gray-700 rounded text-sm">
@@ -86,7 +91,12 @@ function PlayerScore({
         );
     } catch (error) {
         console.error('PlayerScore component error:', error);
-        reportError(error);
-        return null;
+        // Return a minimal fallback UI instead of null
+        return (
+            <div className="player-score p-4 rounded-lg" data-name="player-score-card">
+                <h3 className="text-lg font-semibold mb-2">{name}</h3>
+                <div className="text-4xl font-bold text-primary mb-4">{score}</div>
+            </div>
+        );
     }
 }
