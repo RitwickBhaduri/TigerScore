@@ -35,3 +35,36 @@ body {
 }
 
 /* Add any additional global styles here */
+
+/* iPad OS Compatibility Fixes */
+@supports (-webkit-touch-callout: none) {
+    /* Fix for iOS Safari viewport height */
+    .min-h-screen {
+        min-height: -webkit-fill-available;
+    }
+
+    /* Fix for iOS Safari button hover states */
+    button:hover {
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Fix for iOS Safari input zoom */
+    input, select {
+        font-size: 16px !important;
+    }
+
+    /* Fix for iOS Safari scrolling */
+    .overflow-y-auto {
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+/* Fix for notched devices */
+@supports (padding-top: env(safe-area-inset-top)) {
+    body {
+        padding-top: env(safe-area-inset-top);
+        padding-bottom: env(safe-area-inset-bottom);
+        padding-left: env(safe-area-inset-left);
+        padding-right: env(safe-area-inset-right);
+    }
+}
