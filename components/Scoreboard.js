@@ -81,7 +81,7 @@ function Scoreboard({ players, scores, currentPlayer, onScoreSubmit, gameState, 
                     })}
                 </div>
                 
-                <div className="mt-4">
+                <div className="mt-2">
                     <NumberPad
                         value={currentScore}
                         onChange={handleScoreChange}

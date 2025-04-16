@@ -1,5 +1,5 @@
 // Predefined checkout routes for optimal finishes
-export const checkout_routes = {
+window.checkout_routes = {
     170: ["T20", "T20", "BULL"],
     169: "No checkout possible",
     168: "No checkout possible",

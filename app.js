@@ -245,7 +245,9 @@ function App() {
                     if (prev.initialState) {
                         return {
                             ...prev.initialState,
-                            initialState: prev.initialState
+                            initialState: prev.initialState,
+                            currentTeamPlayerIndex: prev.initialState.settings.isTeamMode ? [0, 0] : null,
+                            teamPlayers: prev.initialState.settings.isTeamMode ? prev.initialState.teamPlayers : null
                         };
                     }
                     return prev;
@@ -259,7 +261,9 @@ function App() {
                     currentLegScores: prev.currentLegScores.map(scores => [...scores]),
                     legsWon: [...prev.legsWon],
                     setsWon: [...prev.setsWon],
-                    settings: { ...prev.settings }
+                    settings: { ...prev.settings },
+                    currentTeamPlayerIndex: prev.currentTeamPlayerIndex ? [...prev.currentTeamPlayerIndex] : null,
+                    teamPlayers: prev.teamPlayers ? prev.teamPlayers.map(team => [...team]) : null
                 }];
 
                 return {
@@ -271,7 +275,9 @@ function App() {
                     currentLegScores: lastState.currentLegScores.map(scores => [...scores]),
                     legsWon: [...lastState.legsWon],
                     setsWon: [...lastState.setsWon],
-                    settings: { ...lastState.settings }
+                    settings: { ...lastState.settings },
+                    currentTeamPlayerIndex: lastState.currentTeamPlayerIndex ? [...lastState.currentTeamPlayerIndex] : null,
+                    teamPlayers: lastState.teamPlayers ? lastState.teamPlayers.map(team => [...team]) : null
                 };
             });
         };

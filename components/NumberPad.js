@@ -17,7 +17,7 @@ function NumberPad({ value, onChange, onSubmit, errorMessage, burstMessage }) {
         };
 
         return (
-            <div className="mt-6 p-4 bg-gray-800 rounded-lg" data-name="number-pad">
+            <div className="mt-2 p-4 bg-gray-800 rounded-lg" data-name="number-pad">
                 <div className="mb-4">
                     <div className="w-full p-3 text-2xl text-center bg-gray-700 rounded">
                         {errorMessage ? (

@@ -1,10 +1,48 @@
 .player-score {
+    background-color: #2B2B31;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    position: relative;
     border: 2px solid #374151;
     transition: all 0.3s;
+    min-height: 302px; /* Default height for player mode */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Team mode specific height */
+.player-score[data-team-mode="true"] {
+    min-height: 326px;
 }
 
 .player-score.active {
-    border-color: #f59e0b;
+    border: 2px solid #E5931B;
+    box-shadow: 0 0 10px rgba(229, 147, 27, 0.3);
+}
+
+/* Reserve space for checkout advice */
+.player-score::after {
+    content: '';
+    display: block;
+    height: 2.5rem; /* Space for checkout advice */
+    visibility: hidden;
+}
+
+/* When checkout advice is shown, remove the reserved space */
+.player-score[data-checkout-visible="true"]::after {
+    height: 0;
+}
+
+/* Ensure content fills the available space */
+.player-score > * {
+    flex-shrink: 0;
+    margin-bottom: 0.25rem; /* Add small margin between elements */
+}
+
+/* Add auto margin at the bottom of all elements */
+.player-score > *:last-child {
+    margin-bottom: auto;
 }
 
 .score-input {
