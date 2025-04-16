@@ -15,7 +15,8 @@ function PlayerScore({
         const getCheckoutAdvice = (score) => {
             if (score <= 1 || score > 170) return null;
             const checkout = checkout_routes[score];
-            return checkout && checkout !== "No checkout possible" ? checkout : null;
+            if (!checkout || checkout === "No checkout possible") return null;
+            return Array.isArray(checkout) ? checkout : null;
         };
 
         const checkoutAdvice = getCheckoutAdvice(score);
