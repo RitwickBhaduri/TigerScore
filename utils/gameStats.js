@@ -9,20 +9,22 @@ function calculatePlayerStats(scores, startingScore) {
 }
 
 function calculateGameStats(gameHistory, currentLeg, startingScore, playerIndex) {
-    // Get all throws for this specific player from history
-    const historyScores = gameHistory.reduce((scores, state) => {
-        const playerScores = state.currentLegScores[playerIndex] || [];
-        return [...scores, ...playerScores];
+    // Get all completed legs from history for this player
+    const completedLegsScores = gameHistory.reduce((scores, state) => {
+        if (state.currentLegScores && state.currentLegScores[playerIndex]) {
+            return [...scores, ...state.currentLegScores[playerIndex]];
+        }
+        return scores;
     }, []);
-    
-    // Combine with current leg scores
-    const allThrows = [...historyScores, ...currentLeg];
-    const totalThrows = allThrows.length;
-    const totalPoints = allThrows.reduce((sum, score) => sum + score, 0);
-    
+
+    // Current leg scores
+    const currentLegScores = currentLeg || [];
+
+    // Calculate leg average using only current leg
+    const legStats = calculatePlayerStats(currentLegScores, startingScore);
+
     return {
-        gameAverage: totalThrows > 0 ? totalPoints / totalThrows : 0,
-        legAverage: calculatePlayerStats(currentLeg, startingScore).average
+        legAverage: legStats.average
     };
 }
 

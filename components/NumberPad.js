@@ -1,4 +1,4 @@
-function NumberPad({ value, onChange, onSubmit }) {
+function NumberPad({ value, onChange, onSubmit, errorMessage, burstMessage }) {
     try {
         const handleNumberClick = (num) => {
             if (value.length < 3) {
@@ -19,14 +19,15 @@ function NumberPad({ value, onChange, onSubmit }) {
         return (
             <div className="mt-6 p-4 bg-gray-800 rounded-lg" data-name="number-pad">
                 <div className="mb-4">
-                    <input
-                        type="text"
-                        value={value}
-                        readOnly
-                        className="w-full p-3 text-2xl text-center bg-gray-700 rounded"
-                        placeholder="Enter score"
-                        data-name="score-display"
-                    />
+                    <div className="w-full p-3 text-2xl text-center bg-gray-700 rounded">
+                        {errorMessage ? (
+                            <span className="text-red-500">{errorMessage}</span>
+                        ) : burstMessage ? (
+                            <span className="text-amber-500">{burstMessage}</span>
+                        ) : (
+                            <span>{value || "Enter score"}</span>
+                        )}
+                    </div>
                 </div>
                 
                 <div className="grid grid-cols-3 gap-2 number-pad" data-name="number-buttons">

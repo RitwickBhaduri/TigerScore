@@ -28,28 +28,31 @@ function App() {
         });
 
         const handleStartGame = (players, settings) => {
-            const flatPlayers = settings.isTeamMode 
-                ? players.flat()
-                : players;
-
             const initialState = {
                 isGameStarted: true,
-                players: flatPlayers,
-                scores: flatPlayers.map(() => settings.startingScore),
+                players: settings.isTeamMode ? [players[0], players[1]] : players,
+                scores: settings.isTeamMode 
+                    ? [settings.startingScore, settings.startingScore]
+                    : players.map(() => settings.startingScore),
                 currentPlayer: settings.startingPlayer,
                 settings,
                 history: [],
                 future: [],
-                currentLegScores: flatPlayers.map(() => []),
-                legsWon: flatPlayers.map(() => 0),
-                setsWon: flatPlayers.map(() => 0),
+                currentLegScores: settings.isTeamMode 
+                    ? [[], []]  // One array per team
+                    : players.map(() => []),
+                legsWon: settings.isTeamMode 
+                    ? [0, 0]  // One counter per team
+                    : players.map(() => 0),
+                setsWon: settings.isTeamMode 
+                    ? [0, 0]  // One counter per team
+                    : players.map(() => 0),
+                teamPlayers: settings.isTeamMode ? players : null,  // Store team players separately
+                currentTeamPlayerIndex: settings.isTeamMode ? [0, 0] : null,  // Track current player within each team
                 initialState: null
             };
 
-            setGameState({
-                ...initialState,
-                initialState
-            });
+            setGameState(initialState);
         };
 
         const handleNewGame = () => {
@@ -86,13 +89,18 @@ function App() {
 
             setGameState(prev => {
                 const updatedScores = [...prev.scores];
-                updatedScores[prev.currentPlayer] = calculateRemainingScore(
+                const result = calculateRemainingScore(
                     updatedScores[prev.currentPlayer],
                     score
                 );
+                
+                // Store 0 for burst throws, otherwise store the actual score
+                const throwScore = result.isBurst ? 0 : score;
+                updatedScores[prev.currentPlayer] = result.remaining;
 
+                // Update current leg scores with the throw score
                 const newCurrentLegScores = prev.currentLegScores.map((scores, index) => 
-                    index === prev.currentPlayer ? [...scores, score] : scores
+                    index === prev.currentPlayer ? [...scores, throwScore] : scores
                 );
 
                 const newHistory = [...prev.history, {
@@ -100,7 +108,9 @@ function App() {
                     currentPlayer: prev.currentPlayer,
                     currentLegScores: prev.currentLegScores.map(scores => [...scores]),
                     legsWon: [...prev.legsWon],
-                    setsWon: [...prev.setsWon]
+                    setsWon: [...prev.setsWon],
+                    settings: { ...prev.settings },
+                    currentTeamPlayerIndex: prev.currentTeamPlayerIndex ? [...prev.currentTeamPlayerIndex] : null
                 }];
 
                 let newLegsWon = [...prev.legsWon];
@@ -109,6 +119,7 @@ function App() {
                 let resetScores = updatedScores;
                 let isNewLeg = false;
                 let isNewSet = false;
+                let newCurrentTeamPlayerIndex = prev.currentTeamPlayerIndex ? [...prev.currentTeamPlayerIndex] : null;
 
                 if (isWinningScore(updatedScores[prev.currentPlayer])) {
                     // Player won the leg
@@ -163,7 +174,12 @@ function App() {
                     }
 
                     // Reset scores for new leg
-                    resetScores = resetScores.map(() => prev.settings.startingScore);
+                    resetScores = prev.players.map(() => prev.settings.startingScore);
+
+                    // Reset team player indices for new leg/set
+                    if (prev.currentTeamPlayerIndex) {
+                        newCurrentTeamPlayerIndex = [0, 0];
+                    }
 
                     // Alternate starting player for next leg regardless of who won
                     if (isNewSet) {
@@ -188,7 +204,18 @@ function App() {
                     });
                 } else {
                     // Move to next player
-                    newCurrentPlayer = (prev.currentPlayer + 1) % prev.players.length;
+                    if (prev.settings.isTeamMode) {
+                        // In team mode, rotate within the team
+                        const currentTeam = prev.currentPlayer;
+                        const nextTeamPlayerIndex = (newCurrentTeamPlayerIndex[currentTeam] + 1) % prev.teamPlayers[currentTeam].length;
+                        newCurrentTeamPlayerIndex[currentTeam] = nextTeamPlayerIndex;
+                        
+                        // Switch to the other team
+                        newCurrentPlayer = (prev.currentPlayer + 1) % prev.players.length;
+                    } else {
+                        // In single player mode, just move to next player
+                        newCurrentPlayer = (prev.currentPlayer + 1) % prev.players.length;
+                    }
                 }
 
                 return {
@@ -197,11 +224,12 @@ function App() {
                     currentPlayer: newCurrentPlayer,
                     history: newHistory,
                     future: [],
-                    currentLegScores: isNewLeg ? resetScores.map(() => []) : newCurrentLegScores,
+                    currentLegScores: isNewLeg ? prev.players.map(() => []) : newCurrentLegScores,
                     legsWon: newLegsWon,
                     setsWon: newSetsWon,
                     isNewLeg,
                     isNewSet,
+                    currentTeamPlayerIndex: newCurrentTeamPlayerIndex,
                     settings: {
                         ...prev.settings,
                         startingPlayer: prev.settings.startingPlayer
@@ -230,17 +258,9 @@ function App() {
                     currentPlayer: prev.currentPlayer,
                     currentLegScores: prev.currentLegScores.map(scores => [...scores]),
                     legsWon: [...prev.legsWon],
-                    setsWon: [...prev.setsWon]
+                    setsWon: [...prev.setsWon],
+                    settings: { ...prev.settings }
                 }];
-
-                // If this is the last history entry, reset to initial state
-                if (newHistory.length === 0) {
-                    return {
-                        ...prev.initialState,
-                        initialState: prev.initialState,
-                        future: newFuture
-                    };
-                }
 
                 return {
                     ...prev,
@@ -249,8 +269,9 @@ function App() {
                     history: newHistory,
                     future: newFuture,
                     currentLegScores: lastState.currentLegScores.map(scores => [...scores]),
-                    legsWon: lastState.legsWon ? [...lastState.legsWon] : [...prev.legsWon],
-                    setsWon: lastState.setsWon ? [...lastState.setsWon] : [...prev.setsWon]
+                    legsWon: [...lastState.legsWon],
+                    setsWon: [...lastState.setsWon],
+                    settings: { ...lastState.settings }
                 };
             });
         };

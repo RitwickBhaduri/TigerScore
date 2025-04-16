@@ -24,7 +24,7 @@ function ScoreHistory({ isOpen, onClose, scores, playerName }) {
                                 data-name={`score-item-${index}`}
                             >
                                 <span>#{scores.length - index}</span>
-                                <span className="font-semibold">{score}</span>
+                                <span className="font-semibold">{scores[scores.length - 1 - index]}</span>
                             </div>
                         ))}
                     </div>
