@@ -1,5 +1,6 @@
 .player-score {
     border: 2px solid #374151;
+    -webkit-transition: all 0.3s;
     transition: all 0.3s;
 }
 
@@ -20,7 +21,14 @@
 }
 
 .winner-highlight {
+    -webkit-animation: winnerPulse 2s infinite;
     animation: winnerPulse 2s infinite;
+}
+
+@-webkit-keyframes winnerPulse {
+    0% { background-color: rgba(245, 158, 11, 0.1); }
+    50% { background-color: rgba(245, 158, 11, 0.2); }
+    100% { background-color: rgba(245, 158, 11, 0.1); }
 }
 
 @keyframes winnerPulse {
@@ -30,7 +38,13 @@
 }
 
 .animate-bounce-once {
+    -webkit-animation: bounceOnce 1s ease-in-out;
     animation: bounceOnce 1s ease-in-out;
+}
+
+@-webkit-keyframes bounceOnce {
+    0%, 100% { -webkit-transform: translateY(0); transform: translateY(0); }
+    50% { -webkit-transform: translateY(-20px); transform: translateY(-20px); }
 }
 
 @keyframes bounceOnce {
@@ -40,20 +54,41 @@
 
 /* Victory Animations */
 .victory-popup {
+    -webkit-animation: fadeIn 0.3s ease-out;
     animation: fadeIn 0.3s ease-out;
 }
 
 .victory-content {
+    -webkit-animation: slideIn 0.5s ease-out;
     animation: slideIn 0.5s ease-out;
 }
 
 .victory-text {
+    -webkit-animation: scaleIn 0.5s ease-out;
     animation: scaleIn 0.5s ease-out;
+}
+
+@-webkit-keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
+}
+
+@-webkit-keyframes slideIn {
+    from {
+        -webkit-transform: translateY(-20px);
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 
 @keyframes slideIn {
@@ -63,6 +98,19 @@
     }
     to {
         transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes scaleIn {
+    from {
+        -webkit-transform: scale(0.8);
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        -webkit-transform: scale(1);
+        transform: scale(1);
         opacity: 1;
     }
 }
@@ -83,25 +131,45 @@
     position: absolute;
     width: 10px;
     height: 10px;
+    -webkit-animation: confetti-fall linear infinite;
     animation: confetti-fall linear infinite;
 }
 
 .confetti-leg {
+    -webkit-animation-duration: 2s;
     animation-duration: 2s;
     width: 8px;
     height: 8px;
 }
 
 .confetti-set {
+    -webkit-animation-duration: 2.5s;
     animation-duration: 2.5s;
     width: 12px;
     height: 12px;
 }
 
 .confetti-match {
+    -webkit-animation-duration: 3s;
     animation-duration: 3s;
     width: 15px;
     height: 15px;
+}
+
+@-webkit-keyframes confetti-fall {
+    0% {
+        -webkit-transform: translateY(-100vh) rotate(0deg);
+        transform: translateY(-100vh) rotate(0deg);
+        opacity: 1;
+    }
+    75% {
+        opacity: 1;
+    }
+    100% {
+        -webkit-transform: translateY(100vh) rotate(360deg);
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+    }
 }
 
 @keyframes confetti-fall {

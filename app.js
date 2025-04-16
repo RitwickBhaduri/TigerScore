@@ -33,22 +33,22 @@ function App() {
                 players: settings.isTeamMode ? [players[0], players[1]] : players,
                 scores: settings.isTeamMode 
                     ? [settings.startingScore, settings.startingScore]
-                    : players.map(() => settings.startingScore),
+                    : players.map(function() { return settings.startingScore; }),
                 currentPlayer: settings.startingPlayer,
-                settings,
+                settings: settings,
                 history: [],
                 future: [],
                 currentLegScores: settings.isTeamMode 
-                    ? [[], []]  // One array per team
-                    : players.map(() => []),
+                    ? [[], []]
+                    : players.map(function() { return []; }),
                 legsWon: settings.isTeamMode 
-                    ? [0, 0]  // One counter per team
-                    : players.map(() => 0),
+                    ? [0, 0]
+                    : players.map(function() { return 0; }),
                 setsWon: settings.isTeamMode 
-                    ? [0, 0]  // One counter per team
-                    : players.map(() => 0),
-                teamPlayers: settings.isTeamMode ? players : null,  // Store team players separately
-                currentTeamPlayerIndex: settings.isTeamMode ? [0, 0] : null,  // Track current player within each team
+                    ? [0, 0]
+                    : players.map(function() { return 0; }),
+                teamPlayers: settings.isTeamMode ? players : null,
+                currentTeamPlayerIndex: settings.isTeamMode ? [0, 0] : null,
                 initialState: null
             };
 
