@@ -16,11 +16,6 @@ function NumberPad({ value, onChange, onSubmit, errorMessage, burstMessage }) {
             }
         };
 
-        // Prevent double-tap zoom on iOS
-        const handleTouchStart = (e) => {
-            e.preventDefault();
-        };
-
         return (
             <div className="mt-6 p-4 bg-gray-800 rounded-lg" data-name="number-pad">
                 <div className="mb-4">
@@ -40,8 +35,7 @@ function NumberPad({ value, onChange, onSubmit, errorMessage, burstMessage }) {
                         <button
                             key={num}
                             onClick={() => handleNumberClick(num)}
-                            onTouchStart={handleTouchStart}
-                            className="p-4 text-xl bg-primary hover:bg-primary/90 rounded active:bg-primary/80"
+                            className="p-4 text-xl bg-primary hover:bg-primary/90 rounded"
                             data-name={`num-${num}-btn`}
                         >
                             {num}
@@ -49,24 +43,21 @@ function NumberPad({ value, onChange, onSubmit, errorMessage, burstMessage }) {
                     ))}
                     <button
                         onClick={handleBackspace}
-                        onTouchStart={handleTouchStart}
-                        className="p-4 text-xl bg-primary hover:bg-primary/90 rounded active:bg-primary/80"
+                        className="p-4 text-xl bg-primary hover:bg-primary/90 rounded"
                         data-name="backspace-btn"
                     >
                         <i className="fas fa-backspace"></i>
                     </button>
                     <button
                         onClick={() => handleNumberClick(0)}
-                        onTouchStart={handleTouchStart}
-                        className="p-4 text-xl bg-primary hover:bg-primary/90 rounded active:bg-primary/80"
+                        className="p-4 text-xl bg-primary hover:bg-primary/90 rounded"
                         data-name="num-0-btn"
                     >
                         0
                     </button>
                     <button
                         onClick={handleSubmit}
-                        onTouchStart={handleTouchStart}
-                        className="p-4 text-xl bg-amber-500 hover:bg-amber-600 rounded active:bg-amber-700"
+                        className="p-4 text-xl bg-amber-500 hover:bg-amber-600 rounded"
                         data-name="submit-btn"
                     >
                         <i className="fas fa-check"></i>
