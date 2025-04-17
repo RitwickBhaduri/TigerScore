@@ -1,7 +1,7 @@
 function GameControls({ onUndo, onRedo, canUndo, canRedo }) {
     try {
         return (
-            <div className="flex justify-center gap-4 mb-4" data-name="game-controls">
+            <div className="flex justify-center gap-4 mb-2" data-name="game-controls">
                 <button
                     onClick={onUndo}
                     disabled={!canUndo}

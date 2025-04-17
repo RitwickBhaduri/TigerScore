@@ -48,7 +48,7 @@ function Scoreboard({ players, scores, currentPlayer, onScoreSubmit, gameState, 
         });
 
         return (
-            <div className="max-w-2xl mx-auto mt-8 px-4" data-name="scoreboard">
+            <div className="max-w-2xl mx-auto mt-4 px-4" data-name="scoreboard">
                 <GameControls
                     onUndo={onUndo}
                     onRedo={onRedo}

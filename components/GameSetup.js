@@ -93,7 +93,7 @@ function GameSetup({ onStartGame }) {
         };
 
         return (
-            <div className="max-w-2xl mx-auto mt-8 p-6 bg-gray-800 rounded-lg shadow-xl" data-name="game-setup">
+            <div className="max-w-2xl mx-auto mt-4 p-6 bg-gray-800 rounded-lg shadow-xl" data-name="game-setup">
                 <h2 className="text-xl font-bold mb-6 text-center text-primary" data-name="setup-title">New Game Setup</h2>
                 
                 <div className="mb-6" data-name="game-mode-toggle">
