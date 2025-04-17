@@ -307,7 +307,7 @@ function App() {
 
         return (
             <div className="min-h-screen bg-gray-900" data-name="app-container">
-                <Header onNewGame={handleNewGame} />
+                <Header onNewGame={handleNewGame} isGameStarted={gameState.isGameStarted} />
                 
                 {!gameState.isGameStarted ? (
                     <GameSetup onStartGame={handleStartGame} />
